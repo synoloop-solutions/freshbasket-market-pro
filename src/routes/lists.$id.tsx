@@ -77,7 +77,7 @@ function ListDetail() {
           {items.map((p) => (
             <li key={p.slug} className="flex items-center gap-3 p-3 sm:p-4">
               <Link to="/product/$slug" params={{ slug: p.slug }} className="shrink-0">
-                <ProductImage emoji={p.emoji} hue={p.hue} alt={p.name} size="sm" className="h-16 w-16 rounded-md" />
+                <ProductImage src={p.image} emoji={p.emoji} hue={p.hue} alt={p.name} size="sm" className="h-16 w-16 rounded-md" sizes="64px" />
               </Link>
               <div className="flex-1">
                 <Link to="/product/$slug" params={{ slug: p.slug }} className="text-sm font-medium hover:text-primary">{p.name}</Link>

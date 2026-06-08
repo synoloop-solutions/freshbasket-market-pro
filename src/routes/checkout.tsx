@@ -207,7 +207,7 @@ function CheckoutPage() {
                   const p = productMap[i.slug];
                   return (
                     <li key={i.slug} className="flex items-center gap-3 rounded-md border bg-card p-2 text-sm">
-                      <ProductImage emoji={p.emoji} hue={p.hue} alt="" size="sm" className="h-12 w-12 rounded-md" />
+                      <ProductImage src={p.image} emoji={p.emoji} hue={p.hue} alt="" size="sm" className="h-12 w-12 rounded-md" sizes="48px" />
                       <span className="flex-1">{p.name} × {i.quantity}</span>
                       <span className="font-medium">{formatPrice((p.salePrice ?? p.price) * i.quantity)}</span>
                     </li>
