@@ -36,7 +36,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
         aria-label={`${product.name} by ${product.brand}, ${formatPrice(product.salePrice ?? product.price)}`}
       >
         <div className="relative aspect-square">
-          <ProductImage emoji={product.emoji} hue={product.hue} alt={product.name} className="absolute inset-0" size={compact ? "md" : "lg"} />
+          <ProductImage src={product.image} emoji={product.emoji} hue={product.hue} alt={product.name} className="absolute inset-0" size={compact ? "md" : "lg"} sizes={compact ? "176px" : "(max-width:640px) 50vw, (max-width:1024px) 33vw, 240px"} />
           {/* Badges */}
           <div className="absolute left-2 top-2 flex flex-col gap-1">
             {discountPct > 0 && (

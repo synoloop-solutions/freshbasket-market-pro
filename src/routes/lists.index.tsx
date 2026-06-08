@@ -68,9 +68,9 @@ function ListsPage() {
                   </button>
                 </div>
                 <p className="text-xs text-muted-foreground">{l.productSlugs.length} items</p>
-                <div className="mt-3 flex gap-1">
+                <div className="mt-3 flex gap-1.5">
                   {preview.map((p) => (
-                    <span key={p.slug} className="text-2xl" aria-hidden="true" title={p.name}>{p.emoji}</span>
+                    <img key={p.slug} src={p.image} alt={p.name} loading="lazy" decoding="async" className="h-10 w-10 rounded-md object-cover" />
                   ))}
                   {preview.length === 0 && <span className="text-xs text-muted-foreground">Empty list</span>}
                 </div>

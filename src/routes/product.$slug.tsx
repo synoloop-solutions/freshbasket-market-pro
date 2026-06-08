@@ -107,7 +107,7 @@ function ProductPage() {
         {/* Gallery */}
         <div className="space-y-3">
           <div className="relative aspect-square overflow-hidden rounded-2xl border bg-card">
-            <ProductImage emoji={product.emoji} hue={product.hue} alt={product.name} className="absolute inset-0" size="xl" />
+            <ProductImage src={product.image} emoji={product.emoji} hue={product.hue} alt={product.name} className="absolute inset-0" size="xl" eager sizes="(max-width:1024px) 100vw, 50vw" />
             {discount > 0 && (
               <Badge className="absolute left-3 top-3 bg-sale text-sale-foreground">-{discount}%</Badge>
             )}
@@ -118,9 +118,9 @@ function ProductPage() {
             )}
           </div>
           <div className="grid grid-cols-4 gap-2">
-            {[product.hue, product.hue + 20, product.hue - 20, product.hue + 40].map((h, i) => (
+            {[product.image, product.image, product.image, product.image].map((src, i) => (
               <button key={i} className="aspect-square overflow-hidden rounded-md border bg-card" aria-label={`View image ${i + 1}`}>
-                <ProductImage emoji={product.emoji} hue={h} alt="" size="sm" className="h-full w-full" />
+                <ProductImage src={src} emoji={product.emoji} hue={product.hue} alt="" size="sm" className="h-full w-full" sizes="120px" />
               </button>
             ))}
           </div>

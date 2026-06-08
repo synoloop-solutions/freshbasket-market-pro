@@ -1,12 +1,15 @@
+import { categoryImages } from "./images";
+
 export interface Category {
   slug: string;
   name: string;
   emoji: string;
-  hue: number; // for gradient placeholder
+  hue: number; // fallback gradient placeholder
   blurb: string;
+  image: string; // real photography from src/data/images.ts
 }
 
-export const categories: Category[] = [
+const raw: Omit<Category, "image">[] = [
   { slug: "fruits-vegetables", name: "Fruits & Vegetables", emoji: "🥬", hue: 130, blurb: "Farm-fresh produce delivered daily" },
   { slug: "dairy-eggs", name: "Dairy & Eggs", emoji: "🥛", hue: 60, blurb: "Milk, cheese, butter & free-range eggs" },
   { slug: "meat-seafood", name: "Meat & Seafood", emoji: "🥩", hue: 15, blurb: "Premium cuts and sustainably caught fish" },
@@ -19,5 +22,7 @@ export const categories: Category[] = [
   { slug: "household", name: "Household Essentials", emoji: "🧻", hue: 200, blurb: "Cleaning and home basics" },
   { slug: "personal-care", name: "Personal Care", emoji: "🧴", hue: 320, blurb: "Daily care from trusted brands" },
 ];
+
+export const categories: Category[] = raw.map((c) => ({ ...c, image: categoryImages[c.slug] }));
 
 export const getCategory = (slug: string) => categories.find((c) => c.slug === slug);

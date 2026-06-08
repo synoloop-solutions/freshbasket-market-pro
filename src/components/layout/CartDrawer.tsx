@@ -43,7 +43,7 @@ export function CartDrawer() {
                 return (
                   <div key={i.slug} className="flex gap-3 border-b py-3">
                     <Link to="/product/$slug" params={{ slug: p.slug }} onClick={close} className="shrink-0">
-                      <ProductImage emoji={p.emoji} hue={p.hue} alt={p.name} size="sm" className="h-16 w-16 rounded-md" />
+                      <ProductImage src={p.image} emoji={p.emoji} hue={p.hue} alt={p.name} size="sm" className="h-16 w-16 rounded-md" sizes="64px" />
                     </Link>
                     <div className="flex flex-1 flex-col gap-1">
                       <Link

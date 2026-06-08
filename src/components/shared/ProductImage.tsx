@@ -1,9 +1,16 @@
 interface Props {
-  emoji: string;
-  hue: number;
+  src?: string;
   alt: string;
+  /** Fallback emoji shown if the image fails to load. */
+  emoji?: string;
+  /** Fallback hue (0-360) for the placeholder background. */
+  hue?: number;
   className?: string;
   size?: "sm" | "md" | "lg" | "xl";
+  /** Set true for above-the-fold imagery (e.g. hero product). */
+  eager?: boolean;
+  /** Responsive sizes attribute. */
+  sizes?: string;
 }
 
 const sizeMap = {
@@ -13,7 +20,30 @@ const sizeMap = {
   xl: "text-9xl",
 };
 
-export function ProductImage({ emoji, hue, alt, className = "", size = "md" }: Props) {
+export function ProductImage({
+  src,
+  alt,
+  emoji,
+  hue = 130,
+  className = "",
+  size = "md",
+  eager = false,
+  sizes = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw",
+}: Props) {
+  if (src) {
+    return (
+      <div className={`relative h-full w-full overflow-hidden bg-muted ${className}`}>
+        <img
+          src={src}
+          alt={alt}
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
+          sizes={sizes}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+    );
+  }
   return (
     <div
       role="img"
@@ -24,7 +54,7 @@ export function ProductImage({ emoji, hue, alt, className = "", size = "md" }: P
       }}
     >
       <span className={`drop-shadow-sm select-none ${sizeMap[size]}`} aria-hidden="true">
-        {emoji}
+        {emoji ?? "🛒"}
       </span>
     </div>
   );

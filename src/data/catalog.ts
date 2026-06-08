@@ -1,4 +1,5 @@
 import { categories } from "./categories";
+import { getProductImage } from "./images";
 
 export interface Product {
   slug: string;
@@ -14,6 +15,8 @@ export interface Product {
   inStock: boolean;
   emoji: string;
   hue: number;
+  /** Stock photo URL (sourced from src/data/images.ts). */
+  image: string;
   description: string;
   ingredients: string;
   nutrition: { calories: number; protein: number; carbs: number; fat: number };
@@ -21,6 +24,14 @@ export interface Product {
   allergens: string;
   origin: string;
 }
+
+// Deterministic small hash for reproducible mock rating/reviewCount values
+// (avoids SSR/CSR hydration mismatch from Math.random).
+const hash = (s: string) => {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return h;
+};
 
 // Helper to build a product
 const p = (
@@ -33,29 +44,33 @@ const p = (
   emoji: string,
   hue: number,
   opts: Partial<Product> = {},
-): Product => ({
-  slug,
-  name,
-  brand,
-  category,
-  price,
-  unit,
-  emoji,
-  hue,
-  rating: opts.rating ?? 4.3 + Math.random() * 0.6,
-  reviewCount: opts.reviewCount ?? 20 + Math.floor(Math.random() * 400),
-  badges: opts.badges ?? [],
-  inStock: opts.inStock ?? true,
-  salePrice: opts.salePrice,
-  description:
-    opts.description ??
-    `Carefully sourced ${name.toLowerCase()} from trusted ${brand} producers. Perfect for everyday cooking and family meals.`,
-  ingredients: opts.ingredients ?? "100% natural ingredients. No artificial preservatives.",
-  nutrition: opts.nutrition ?? { calories: 120, protein: 3, carbs: 18, fat: 4 },
-  storage: opts.storage ?? "Store in a cool, dry place. Refrigerate after opening.",
-  allergens: opts.allergens ?? "May contain traces of nuts, dairy or gluten.",
-  origin: opts.origin ?? "Locally sourced",
-});
+): Product => {
+  const h = hash(slug);
+  return {
+    slug,
+    name,
+    brand,
+    category,
+    price,
+    unit,
+    emoji,
+    hue,
+    image: opts.image ?? getProductImage(slug, category),
+    rating: opts.rating ?? Number((4.3 + ((h % 60) / 100)).toFixed(1)),
+    reviewCount: opts.reviewCount ?? 20 + (h % 400),
+    badges: opts.badges ?? [],
+    inStock: opts.inStock ?? true,
+    salePrice: opts.salePrice,
+    description:
+      opts.description ??
+      `Carefully sourced ${name.toLowerCase()} from trusted ${brand} producers. Perfect for everyday cooking and family meals.`,
+    ingredients: opts.ingredients ?? "100% natural ingredients. No artificial preservatives.",
+    nutrition: opts.nutrition ?? { calories: 120, protein: 3, carbs: 18, fat: 4 },
+    storage: opts.storage ?? "Store in a cool, dry place. Refrigerate after opening.",
+    allergens: opts.allergens ?? "May contain traces of nuts, dairy or gluten.",
+    origin: opts.origin ?? "Locally sourced",
+  };
+};
 
 export const products: Product[] = [
   // Fruits & Vegetables

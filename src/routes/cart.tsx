@@ -69,7 +69,7 @@ function CartPage() {
             return (
               <li key={i.slug} className="flex gap-4 rounded-xl border bg-card p-4">
                 <Link to="/product/$slug" params={{ slug: p.slug }} className="shrink-0">
-                  <ProductImage emoji={p.emoji} hue={p.hue} alt={p.name} size="md" className="h-24 w-24 rounded-md" />
+                  <ProductImage src={p.image} emoji={p.emoji} hue={p.hue} alt={p.name} size="md" className="h-24 w-24 rounded-md" sizes="96px" />
                 </Link>
                 <div className="flex flex-1 flex-col">
                   <div className="flex items-start justify-between gap-3">

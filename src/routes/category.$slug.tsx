@@ -56,17 +56,20 @@ function CategoryPage() {
   return (
     <div className="container-page space-y-6 py-6">
       <Breadcrumbs items={[{ label: "Shop", to: "/shop" }, { label: category.name }]} />
-      <header
-        className="overflow-hidden rounded-2xl p-6 sm:p-10"
-        style={{ background: `linear-gradient(135deg, oklch(0.95 0.06 ${category.hue}), oklch(0.88 0.12 ${category.hue}))` }}
-      >
-        <div className="flex items-start gap-4">
-          <div className="text-5xl sm:text-6xl" aria-hidden="true">{category.emoji}</div>
-          <div>
-            <h1 className="font-display text-3xl font-bold sm:text-4xl">{category.name}</h1>
-            <p className="mt-1 text-sm text-foreground/80 sm:text-base">{category.blurb}</p>
-            <p className="mt-3 text-xs text-foreground/70">{products.length} products</p>
-          </div>
+      <header className="relative overflow-hidden rounded-2xl">
+        <img
+          src={category.image}
+          alt=""
+          loading="eager"
+          decoding="async"
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/40 to-foreground/10" />
+        <div className="relative p-6 text-background sm:p-10">
+          <h1 className="font-display text-3xl font-bold sm:text-4xl">{category.name}</h1>
+          <p className="mt-1 max-w-xl text-sm opacity-90 sm:text-base">{category.blurb}</p>
+          <p className="mt-3 text-xs opacity-80">{products.length} products</p>
         </div>
       </header>
 
