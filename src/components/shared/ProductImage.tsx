@@ -18,7 +18,7 @@ export function ProductImage({ emoji, hue, alt, className = "", size = "md" }: P
     <div
       role="img"
       aria-label={alt}
-      className={`relative flex items-center justify-center overflow-hidden ${className}`}
+      className={`flex h-full w-full items-center justify-center overflow-hidden ${className}`}
       style={{
         background: `radial-gradient(circle at 30% 20%, oklch(0.95 0.08 ${hue}), oklch(0.88 0.12 ${hue}) 60%, oklch(0.82 0.14 ${hue}))`,
       }}
