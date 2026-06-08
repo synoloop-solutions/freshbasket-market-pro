@@ -17,16 +17,17 @@ export function CategoryGrid() {
             key={c.slug}
             to="/category/$slug"
             params={{ slug: c.slug }}
-            className="group flex flex-col items-center rounded-2xl border bg-card p-4 text-center transition-all hover:-translate-y-0.5 hover:shadow-md"
+            className="group flex flex-col items-center rounded-2xl border bg-card p-3 text-center transition-all hover:-translate-y-0.5 hover:shadow-md sm:p-4"
           >
-            <div
-              className="mb-2 grid h-14 w-14 place-items-center rounded-full text-3xl"
-              style={{
-                background: `radial-gradient(circle, oklch(0.95 0.08 ${c.hue}), oklch(0.88 0.12 ${c.hue}))`,
-              }}
-              aria-hidden="true"
-            >
-              {c.emoji}
+            <div className="mb-2 h-16 w-16 overflow-hidden rounded-full ring-2 ring-background sm:h-20 sm:w-20">
+              <img
+                src={c.image}
+                alt={c.name}
+                loading="lazy"
+                decoding="async"
+                sizes="80px"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <p className="text-xs font-medium leading-tight sm:text-sm">{c.name}</p>
           </Link>

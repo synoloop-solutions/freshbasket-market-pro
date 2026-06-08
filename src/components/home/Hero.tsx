@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Truck, Clock, ShieldCheck } from "lucide-react";
 import { DeliveryChecker } from "@/components/shared/DeliveryChecker";
+import { lifestyleImages } from "@/data/images";
 
 export function Hero() {
   return (
@@ -37,24 +38,15 @@ export function Hero() {
 
         <div className="relative">
           <div className="relative aspect-[5/4] overflow-hidden rounded-3xl bg-card shadow-xl">
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 20%, oklch(0.92 0.13 130), oklch(0.82 0.16 145) 60%, oklch(0.68 0.16 148))",
-              }}
-              aria-hidden="true"
+            <img
+              src={lifestyleImages.hero}
+              alt="Fresh fruits and vegetables arranged on a wooden table"
+              fetchPriority="high"
+              decoding="async"
+              sizes="(max-width:768px) 100vw, 50vw"
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-3 p-6 text-7xl sm:text-8xl">
-              {["🥬", "🍅", "🥑", "🥕", "🍓", "🥖", "🥛", "🧀", "🍎"].map((e, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-center rounded-2xl bg-background/40 backdrop-blur-sm"
-                >
-                  <span aria-hidden="true">{e}</span>
-                </div>
-              ))}
-            </div>
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/40 to-transparent" aria-hidden="true" />
             <div className="absolute bottom-4 left-4 rounded-xl bg-background/95 p-3 shadow-lg backdrop-blur">
               <p className="text-xs font-medium text-muted-foreground">Today's pick</p>
               <p className="text-sm font-semibold">Organic Bananas — $1.49/lb</p>

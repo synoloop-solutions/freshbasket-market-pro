@@ -1,5 +1,6 @@
 import { testimonials } from "@/data/reviews";
 import { RatingStars } from "@/components/shared/RatingStars";
+import { testimonialAvatars } from "@/data/images";
 
 export function Testimonials() {
   return (
@@ -15,8 +16,20 @@ export function Testimonials() {
             <blockquote className="mt-3 text-sm leading-relaxed text-foreground">
               "{t.quote}"
             </blockquote>
-            <figcaption className="mt-4 text-xs text-muted-foreground">
-              <span className="font-semibold text-foreground">{t.name}</span> · {t.role}
+            <figcaption className="mt-4 flex items-center gap-3">
+              <img
+                src={testimonialAvatars[t.name]}
+                alt={t.name}
+                loading="lazy"
+                decoding="async"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full object-cover"
+              />
+              <span className="text-xs text-muted-foreground">
+                <span className="block font-semibold text-foreground">{t.name}</span>
+                {t.role}
+              </span>
             </figcaption>
           </figure>
         ))}
