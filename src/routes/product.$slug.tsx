@@ -146,7 +146,7 @@ function ProductPage() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {product.badges.map((b) => (
+            {product.badges.map((b: string) => (
               <Badge key={b} variant="outline" className="capitalize">{b.replace("-", " ")}</Badge>
             ))}
           </div>
