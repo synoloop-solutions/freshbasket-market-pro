@@ -3,6 +3,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { DeliveryChecker } from "@/components/shared/DeliveryChecker";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Clock, MapPin, Truck, ShieldCheck } from "lucide-react";
+import { lifestyleImages } from "@/data/images";
 
 export const Route = createFileRoute("/delivery")({
   head: () => ({
@@ -30,11 +31,22 @@ export default function DeliveryPage() {
   return (
     <div className="container-page space-y-8 py-6">
       <Breadcrumbs items={[{ label: "Delivery" }]} />
-      <header className="rounded-2xl bg-gradient-to-br from-primary-soft to-cream p-6 sm:p-10">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">Same-day delivery, on your schedule</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          Free over $35 · 60-minute express option · 100% fresh guarantee
-        </p>
+      <header className="relative overflow-hidden rounded-2xl">
+        <img
+          src={lifestyleImages.delivery}
+          alt="Courier delivering a bag of fresh groceries to a customer's door"
+          loading="eager"
+          decoding="async"
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/75 via-foreground/45 to-foreground/10" />
+        <div className="relative p-6 text-background sm:p-12">
+          <h1 className="font-display text-3xl font-bold sm:text-4xl">Same-day delivery, on your schedule</h1>
+          <p className="mt-2 max-w-2xl text-sm opacity-90 sm:text-base">
+            Free over $35 · 60-minute express option · 100% fresh guarantee
+          </p>
+        </div>
       </header>
 
       <DeliveryChecker />
