@@ -60,7 +60,7 @@ function ShopPage() {
     return list;
   }, [search, price]);
 
-  const setSort = (sort: string) => navigate({ search: (prev) => ({ ...prev, sort: sort as never }) });
+  const setSort = (sort: string) => navigate({ search: (prev: typeof search) => ({ ...prev, sort: sort as typeof search.sort }) });
 
   const filters = (
     <div className="space-y-6">
@@ -70,7 +70,7 @@ function ShopPage() {
           <label className="flex items-center gap-2 text-sm">
             <Checkbox
               checked={search.cat === ""}
-              onCheckedChange={() => navigate({ search: (p) => ({ ...p, cat: "" }) })}
+              onCheckedChange={() => navigate({ search: (p: typeof search) => ({ ...p, cat: "" }) })}
             />
             All
           </label>
@@ -79,7 +79,7 @@ function ShopPage() {
               <Checkbox
                 checked={search.cat === c.slug}
                 onCheckedChange={(v) =>
-                  navigate({ search: (p) => ({ ...p, cat: v ? c.slug : "" }) })
+                  navigate({ search: (p: typeof search) => ({ ...p, cat: v ? c.slug : "" }) })
                 }
               />
               <span aria-hidden="true">{c.emoji}</span> {c.name}
@@ -99,14 +99,14 @@ function ShopPage() {
         <label className="flex items-center gap-2 text-sm">
           <Checkbox
             checked={search.organic}
-            onCheckedChange={(v) => navigate({ search: (p) => ({ ...p, organic: !!v }) })}
+            onCheckedChange={(v) => navigate({ search: (p: typeof search) => ({ ...p, organic: !!v }) })}
           />
           Organic only
         </label>
         <label className="flex items-center gap-2 text-sm">
           <Checkbox
             checked={search.available}
-            onCheckedChange={(v) => navigate({ search: (p) => ({ ...p, available: !!v }) })}
+            onCheckedChange={(v) => navigate({ search: (p: typeof search) => ({ ...p, available: !!v }) })}
           />
           In stock only
         </label>
