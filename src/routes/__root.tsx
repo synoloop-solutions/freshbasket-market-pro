@@ -85,6 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "FreshBasket Market" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "FreshBasket Market — Fresh groceries delivered same-day" },
+      { name: "twitter:description", content: "Shop fresh produce, pantry essentials, dairy, meat and more. Free same-day delivery on orders over $35." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/beb411a8-28ac-4b70-b798-ed937e3c399c/id-preview-00c22d49--a1064402-4daf-4f27-9726-b8be1b390134.lovable.app-1780953892359.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/beb411a8-28ac-4b70-b798-ed937e3c399c/id-preview-00c22d49--a1064402-4daf-4f27-9726-b8be1b390134.lovable.app-1780953892359.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
