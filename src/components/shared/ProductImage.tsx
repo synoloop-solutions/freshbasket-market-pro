@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 interface Props {
   src?: string;
   alt: string;
@@ -32,7 +34,7 @@ export function ProductImage({
 }: Props) {
   if (src) {
     return (
-      <div className={`relative h-full w-full overflow-hidden bg-muted ${className}`}>
+      <div className={cn("relative overflow-hidden bg-muted", className)}>
         <img
           src={src}
           alt={alt}
@@ -48,7 +50,7 @@ export function ProductImage({
     <div
       role="img"
       aria-label={alt}
-      className={`flex h-full w-full items-center justify-center overflow-hidden ${className}`}
+      className={cn("flex items-center justify-center overflow-hidden", className)}
       style={{
         background: `radial-gradient(circle at 30% 20%, oklch(0.95 0.08 ${hue}), oklch(0.88 0.12 ${hue}) 60%, oklch(0.82 0.14 ${hue}))`,
       }}
